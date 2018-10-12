@@ -1,0 +1,171 @@
+package com.sultan.up.config;
+
+import com.alibaba.druid.pool.DruidDataSource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import java.sql.SQLException;
+
+/**
+ * Created by sultan on 2018/4/3.
+ */
+@Configuration
+/*@EnableTransactionManagement
+@EnableJpaRepositories(
+		entityManagerFactoryRef="",
+		transactionManagerRef="",
+		basePackages={"com.hzq.dao"}
+		)
+@PropertySource("classpath:application.properties")*/
+@EnableJpaRepositories(basePackages={"com.sultan.up"})
+@EntityScan("com.sultan.up.entity")
+public class DataSourceConfig {
+
+	/*private static final String DATABASE_DRIVER = "spring.datasource.driver-class-name";
+    private static final String DATABASE_URL = "spring.datasource.url";
+    private static final String DATABASE_USER = "spring.datasource.username";
+    private static final String DATABASE_PASSWORD = "spring.datasource.password";
+    private static final String PACKAGES_TO_SCAN = "packages.to.scan";
+    private static final String HIBERNATE_DIALECT = "jpa.hibernate.dialect";
+    private static final String HIBERNATE_SHOW_SQL = "jpa.hibernate.show-sql";
+
+    @Resource
+    protected Environment env;
+
+    @Bean
+    public HibernateExceptionTranslator hibernateExceptionTranslator() {
+        return new HibernateExceptionTranslator();
+    }
+
+    protected Properties hibernateProperties() {
+        Properties properties = new Properties();
+        properties.put(HIBERNATE_DIALECT, env.getRequiredProperty(HIBERNATE_DIALECT));
+        properties.put(HIBERNATE_SHOW_SQL, env.getRequiredProperty(HIBERNATE_SHOW_SQL));
+        //properties.put(HIBERNATE_SHOW_SQL, env.getRequiredProperty(HIBERNATE_SHOW_SQL));
+        return properties;
+    }
+
+
+	@Bean(name="dataSource")
+	@Qualifier("dataSource")
+	@ConfigurationProperties(prefix="spring.datasource")
+	public DataSource getDataSource(){
+		System.out.println("****DataSource create*****");
+		return DataSourceBuilder.create().build();
+	}
+
+	@Bean
+	public LocalContainerEntityManagerFactoryBean getFactoryBean(){
+		System.out.println("****LocalContainerEntityManagerFactoryBean create*****");
+		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+
+		factory.setDataSource(getDataSource());
+		factory.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+        factory.setPackagesToScan(env.getRequiredProperty(PACKAGES_TO_SCAN).split(","));
+        factory.setJpaProperties(hibernateProperties());
+        factory.afterPropertiesSet();
+		return factory;
+	}
+
+	@Bean
+    public PlatformTransactionManager transactionManager() {
+		System.out.println("****PlatformTransactionManager create*****");
+        JpaTransactionManager manager = new JpaTransactionManager();
+        manager.setEntityManagerFactory(getFactoryBean().getObject());
+        return manager;
+    }*/
+
+    @Value("${spring.datasource.url}")
+    private String dbUrl;
+
+    @Value("${spring.datasource.username}")
+    private String username;
+
+    @Value("${spring.datasource.password}")
+    private String password;
+
+    @Value("${spring.datasource.driverClassName}")
+    private String driverClassName;
+
+    @Value("${spring.datasource.initialSize}")
+    private int initialSize;
+
+    @Value("${spring.datasource.minIdle}")
+    private int minIdle;
+
+    @Value("${spring.datasource.maxActive}")
+    private int maxActive;
+
+    @Value("${spring.datasource.maxWait}")
+    private int maxWait;
+
+    @Value("${spring.datasource.timeBetweenEvictionRunsMillis}")
+    private int timeBetweenEvictionRunsMillis;
+
+    @Value("${spring.datasource.minEvictableIdleTimeMillis}")
+    private int minEvictableIdleTimeMillis;
+
+    @Value("${spring.datasource.validationQuery}")
+    private String validationQuery;
+
+    @Value("${spring.datasource.testWhileIdle}")
+    private boolean testWhileIdle;
+
+    @Value("${spring.datasource.testOnBorrow}")
+    private boolean testOnBorrow;
+
+    @Value("${spring.datasource.testOnReturn}")
+    private boolean testOnReturn;
+
+    @Value("${spring.datasource.poolPreparedStatements}")
+    private boolean poolPreparedStatements;
+
+    @Value("${spring.datasource.maxPoolPreparedStatementPerConnectionSize}")
+    private int maxPoolPreparedStatementPerConnectionSize;
+
+    @Value("${spring.datasource.filters}")
+    private String filters;
+
+    @Value("{spring.datasource.connectionProperties}")
+    private String connectionProperties;
+
+    @Bean // 声明其为Bean实例
+    @Primary // 在同样的DataSource中，首先使用被标注的DataSource
+    public DruidDataSource dataSource() {
+        System.out.println("*****datasource init*****");
+        DruidDataSource datasource = new DruidDataSource();
+
+        datasource.setUrl(this.dbUrl);
+        datasource.setUsername(username);
+        datasource.setPassword(password);
+        datasource.setDriverClassName(driverClassName);
+
+        // configuration
+        datasource.setInitialSize(initialSize);
+        datasource.setMinIdle(minIdle);
+        datasource.setMaxActive(maxActive);
+        datasource.setMaxWait(maxWait);
+        datasource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
+        datasource.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
+        datasource.setValidationQuery(validationQuery);
+        datasource.setTestWhileIdle(testWhileIdle);
+        datasource.setTestOnBorrow(testOnBorrow);
+        datasource.setTestOnReturn(testOnReturn);
+        datasource.setPoolPreparedStatements(poolPreparedStatements);
+        datasource.setMaxPoolPreparedStatementPerConnectionSize(maxPoolPreparedStatementPerConnectionSize);
+        try {
+            datasource.setFilters(filters);
+        } catch (SQLException e) {
+
+        }
+        datasource.setConnectionProperties(connectionProperties);
+
+        return datasource;
+    }
+
+}
+
