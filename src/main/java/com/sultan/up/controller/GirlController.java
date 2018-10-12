@@ -57,7 +57,7 @@ public class GirlController {
     @ResponseBody
     public String gitTest() {
         System.out.println("*******spring boot gitTest*******");
-        return "gitTest success ";
+        return "testGit success ";
     }
 
     @RequestMapping(value="/gitTest1", method={RequestMethod.GET, RequestMethod.POST})
