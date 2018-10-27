@@ -1,4 +1,4 @@
-package com.sultan.up.entity;
+package bootserv.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;

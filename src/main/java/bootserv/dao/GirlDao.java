@@ -1,6 +1,6 @@
-package com.sultan.up.dao;
+package bootserv.dao;
 
-import com.sultan.up.entity.Girl;
+import bootserv.entity.Girl;
 
 import java.util.List;
 

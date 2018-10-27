@@ -1,9 +1,9 @@
-package com.sultan.up.dao.impl;
+package bootserv.dao.impl;
 
 
-import com.sultan.up.dao.DaoTest;
-import com.sultan.up.dao.GirlDao;
-import com.sultan.up.entity.Girl;
+import bootserv.dao.DaoTest;
+import bootserv.dao.GirlDao;
+import bootserv.entity.Girl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

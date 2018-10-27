@@ -1,8 +1,8 @@
-package com.sultan.up.dao.impl;
+package bootserv.dao.impl;
 
 
-import com.sultan.up.dao.GirlDao;
-import com.sultan.up.entity.Girl;
+import bootserv.dao.GirlDao;
+import bootserv.entity.Girl;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

@@ -1,7 +1,7 @@
-package com.sultan.up.dao;
+package bootserv.dao;
 
 
-import com.sultan.up.entity.Girl;
+import bootserv.entity.Girl;
 
 /**
  * Created by sultan on 2018/4/8.

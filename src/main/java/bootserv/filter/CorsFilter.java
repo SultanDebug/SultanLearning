@@ -1,4 +1,4 @@
-package com.sultan.up.filter;
+package bootserv.filter;
 
 
 import org.springframework.stereotype.Component;

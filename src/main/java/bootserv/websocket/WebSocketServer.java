@@ -1,4 +1,4 @@
-package com.sultan.up.websocket;
+package bootserv.websocket;
 
 import org.springframework.stereotype.Component;
 

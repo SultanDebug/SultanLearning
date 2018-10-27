@@ -1,10 +1,10 @@
-package com.sultan.up.service.impl;
+package bootserv.service.impl;
 
 
-import com.sultan.up.dao.DaoTest;
-import com.sultan.up.dao.GirlDao;
-import com.sultan.up.entity.Girl;
-import com.sultan.up.service.GirlService;
+import bootserv.dao.GirlDao;
+import bootserv.dao.DaoTest;
+import bootserv.entity.Girl;
+import bootserv.service.GirlService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;

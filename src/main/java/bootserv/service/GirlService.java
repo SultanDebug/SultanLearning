@@ -1,7 +1,7 @@
-package com.sultan.up.service;
+package bootserv.service;
 
 
-import com.sultan.up.entity.Girl;
+import bootserv.entity.Girl;
 
 import java.util.List;
 
